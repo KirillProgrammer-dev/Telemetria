@@ -26,5 +26,4 @@ Route::get('/user', function (Request $request) {
 Route::post('/token', [UserController::class, "getToken"]);
 Route::post('/log-out', [UserController::class, "logOut"])->middleware(['auth:sanctum']);
 Route::post('/registration', [UserController::class, "registration"]);
-Route::get('/all-rooms', [RoomController::class, "getAllRooms"]);
-Route::get("/all-cameras-by-room-id", [RoomController::class, "getAllCamerasByRoomId"]);
+Route::post('/all-rooms', [RoomController::class, "getAllRooms"]);

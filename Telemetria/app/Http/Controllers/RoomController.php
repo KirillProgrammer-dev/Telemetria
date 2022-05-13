@@ -8,13 +8,17 @@ use App\Models\Camera;
 
 class RoomController extends Controller
 {
-    public function getAllRooms(){
-        $rooms = Room::all();
-        return json_encode($rooms, JSON_UNESCAPED_UNICODE);
-    }
-
-    public function getAllCamerasByRoomId(Request $request){
-        $cameras = Camera::where("room_id", $request->id)->get()->first();
+    public function getAllCamerasByRoomId($id){
+        $cameras = Camera::where("room_id", $id)->get()->first();
         return json_encode($cameras, JSON_UNESCAPED_UNICODE);
     }    
+
+    public function getAllRooms(){
+        $rooms = Room::all();
+        $roomsWithCameras = array();
+        foreach($rooms as $room){
+            $roomsWithCameras[$room->name] = self::getAllCamerasByRoomId($room->id);
+        }
+        return json_encode($roomsWithCameras, JSON_UNESCAPED_UNICODE);
+    }
 }

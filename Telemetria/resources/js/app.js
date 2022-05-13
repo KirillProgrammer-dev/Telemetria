@@ -14,19 +14,26 @@
  
  import Login from "./views-vue/Login.vue"
  import Main from "./views-vue/Main.vue"
+ import Periudmenu from "./views-vue/Periudmenu.vue"
  
  const router = new VueRouter({
      mode: 'history',
      routes: [{
          path: '/login',
          name: 'Login',
-         component: Login
+         component: Login,
      },
     {
         path: '/',
         name: 'Main',
-        component: Main
-    }]
+        component: Main,
+    },
+    {
+        path: '/video',
+        name: 'Periudmenu',
+        component: Periudmenu,
+    }
+]
  });
  
  const app = new Vue({
