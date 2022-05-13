@@ -59,15 +59,13 @@
                                 :key="child.id"
                                 >
                                 <v-list-item-content>
-                                    <v-list-item-title v-text="child.name"></v-list-item-title>
+                                    <v-list-item-title @click="openVideo(child.id)" link v-text="child.name"></v-list-item-title>
                                 </v-list-item-content>
                                 </v-list-item>
                         </v-list-group>
                     </v-list>
                 </v-card>
                 <br />
-
-                <v-btn @click="e1 = 3"> Подтвердить </v-btn>
 
                 <v-btn @click="e1 = 1"> Назад </v-btn>
             </v-stepper-content>
@@ -84,15 +82,19 @@
             
         }),
 
-        methods: {},
-
         mounted() {
             axios
             .post('api/all-rooms')
             .then(response =>{
                 this.items = response.data;
             });
-        }
+        }, 
+
+        methods: {
+            openVideo(id){
+                window.location = ('/video/' + id)
+            }
+        },
     };
 
 </script>

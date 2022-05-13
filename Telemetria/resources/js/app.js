@@ -11,10 +11,12 @@
  Vue.use(VueRouter);
  
  Vue.component('App', require('./App.vue').default);
+ Vue.component('Video', require('./views-vue/Video.vue').default);
  
  import Login from "./views-vue/Login.vue"
  import Main from "./views-vue/Main.vue"
  import Periudmenu from "./views-vue/Periudmenu.vue"
+ import Video from "./views-vue/Video.vue"
  
  const router = new VueRouter({
      mode: 'history',
@@ -29,10 +31,15 @@
         component: Main,
     },
     {
+        path: '/video/:id',
+        name: 'Video',
+        component: Video,
+    },
+    {
         path: '/video',
         name: 'Periudmenu',
         component: Periudmenu,
-    }
+    },
 ]
  });
  
