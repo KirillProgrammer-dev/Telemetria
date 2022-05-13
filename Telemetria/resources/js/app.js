@@ -1,32 +1,53 @@
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
 
-require('./bootstrap');
 
-window.Vue = require('vue').default;
+ require('./bootstrap');
 
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
+ import Vue from 'vue'
+ import VueRouter from 'vue-router'
+ import axios from 'axios'
+ import Vuetify from './plugins/vuetify'
 
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+ Vue.use(VueRouter);
+ 
+ Vue.component('App', require('./App.vue').default);
+// Vue.component('Menu', require('./components/Menu.vue').default);
+ 
+ 
+ import Home from "./views-vue/Home.vue"
+ import Admin from "./views-vue/Admin.vue"
+ import Login from "./views-vue/Login.vue"
+ import Registration from "./views-vue/Registration.vue"
+ 
+ /*const router = new VueRouter({
+     mode: 'history',
+     routes: [{
+         path: '/',
+         name: 'Home',
+         component: Home
+     },
+ 
+     {
+         path: '/admin',
+         name: 'Admin',
+         component: Admin
+     },
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+     {
+        path: '/login',
+        name: 'Login',
+        component: Login
+    },
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
-const app = new Vue({
+    {
+        path: '/registration',
+        name: 'Registration',
+        component: Registration
+    },
+ ]
+ });*/
+ 
+ const app = new Vue({
+    vuetify: Vuetify,
     el: '#app',
-});
+    router,
+ });
