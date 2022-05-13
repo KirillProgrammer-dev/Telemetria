@@ -42,12 +42,28 @@
 
             <v-stepper-content step="2" data-app>
                 <v-card class="mb-12" color="grey lighten-1" height="200px" style="margin-bottom: 1em; padding: 1em;">
-                    <v-row align="center">
-                        <v-col class="d-flex" cols="12" sm="6">
-                            <v-select :items="rooms.roomname" label="Standard"></v-select>
-                            <p>{{rooms.roomname}}</p>
-                        </v-col>
-                    </v-row>
+                    <v-list>
+                        <v-list-group
+                            v-for="item in items"
+                            :key="item.id"
+                            no-action
+                        >
+                            <template v-slot:activator>
+                            <v-list-item-content>
+                                <v-list-item-title v-text="item.nameroom"></v-list-item-title>
+                            </v-list-item-content>
+                            </template>
+
+                            <v-list-item
+                            v-for="child in item.cameras"
+                                :key="child.id"
+                                >
+                                <v-list-item-content>
+                                    <v-list-item-title v-text="child.name"></v-list-item-title>
+                                </v-list-item-content>
+                                </v-list-item>
+                        </v-list-group>
+                    </v-list>
                 </v-card>
                 <br />
 
@@ -64,15 +80,7 @@
         name: "Menu",
         data: () => ({
             e1: 1,
-            rooms: [{
-                roomname: {
-                    id: 1,
-                    name: "",
-            		room_id: 1,
-            		created_at: "",
-		            updated_at: "",
-                }
-            }]
+            items: []
             
         }),
 
@@ -82,9 +90,8 @@
             axios
             .post('api/all-rooms')
             .then(response =>{
-                this.rooms = response.data 
-                console.log(this.rooms)
-            })
+                this.items = response.data;
+            });
         }
     };
 
