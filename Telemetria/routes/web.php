@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Models\Information;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,3 +16,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get("/allp", function(){
+    $all = Information::all();
+    for ($i = 1; $i <= count($all); $i++){
+        if (($all[$i]->time - $all[$i-1]->time) >= 2){
+            return $all[$i];
+        }
+    }
+ });
