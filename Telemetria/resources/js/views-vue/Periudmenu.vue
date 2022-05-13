@@ -45,7 +45,6 @@
                     <v-row align="center">
                         <v-col class="d-flex" cols="12" sm="6">
                             <v-select :items="rooms.roomname" label="Standard"></v-select>
-                            <p>{{rooms.roomname}}</p>
                         </v-col>
                     </v-row>
                 </v-card>
