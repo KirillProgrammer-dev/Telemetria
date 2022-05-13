@@ -1,51 +1,76 @@
 <template>
-    <v-stepper v-model="e1">
+    <v-stepper
+        v-model="e1"
+        style="width: 80%; padding: 20px; margin: 20px auto"
+    >
         <v-stepper-header>
             <v-stepper-step :complete="e1 > 1" step="1">
-                Выбор временных рамок
+                Выберите нужное время
             </v-stepper-step>
 
             <v-divider></v-divider>
 
             <v-stepper-step :complete="e1 > 2" step="2">
-                Выбор камеры
+                Выберите нужный филиал
             </v-stepper-step>
+
+            <v-divider></v-divider>
         </v-stepper-header>
 
         <v-stepper-items>
             <v-stepper-content step="1">
                 <v-card class="mb-12" color="grey lighten-1" height="200px">
-                    <v-range-slider
-                    hint="Im a hint"
-                    max="50"
-                    min="-50"
-                    ></v-range-slider>
+                    <v-row>
+                        <v-col cols="5">
+                            <v-subheader
+                                >Выберите начало промежутка</v-subheader
+                            >
+                        </v-col>
+                        <v-col cols="7">
+                            <v-text-field
+                                id="starttime"
+                                label="Начало"
+                                value="13:30:00"
+                                type="time"
+                            ></v-text-field>
+                        </v-col>
+                    </v-row>
+                    <br />
+                    <v-row>
+                        <v-col cols="5">
+                            <v-subheader>Выберите конец промежутка</v-subheader>
+                        </v-col>
+                        <v-col cols="7">
+                            <v-text-field
+                                id="endtime"
+                                label="Конец"
+                                value="13:30:00"
+                                type="time"
+                            ></v-text-field>
+                        </v-col>
+                    </v-row>
                 </v-card>
+                <br />
 
-                <v-btn color="primary" @click="e1 = 2">
-                    Далее
-                </v-btn>
-
-                <v-btn text>
-                    Отмена
-                </v-btn>
+                <v-btn class="mb-30" @click="e1 = 2"> Дальше </v-btn>
             </v-stepper-content>
 
             <v-stepper-content step="2">
-                <v-card class="mb-12" color="grey lighten-1" height="200px"></v-card>
+                <v-card
+                    class="mb-12"
+                    color="grey lighten-1"
+                    height="200px"
+                    style="margin-bottom: 1em; padding: 1em;"
+                ></v-card>
+                <br />
 
-                <v-btn color="primary" @click="e1 = 3">
-                    
-                </v-btn>
+                <v-btn @click="e1 = 3"> Подтвердить </v-btn>
 
-                <v-btn text>
-                    Отмена
-                </v-btn>
+                <v-btn @click="e1 = 1"> Назад </v-btn>
             </v-stepper-content>
         </v-stepper-items>
     </v-stepper>
 </template>
-
 
 <script>
 export default {
@@ -56,7 +81,8 @@ export default {
         modal2: false,
         e1: 1,
     }),
-    methods: {}
-}
-
+    methods: {},
+};
 </script>
+<style>
+</style>
