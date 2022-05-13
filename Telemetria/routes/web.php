@@ -1,9 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Models\User;
-use App\Models\Room;
-use App\Models\Camera;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,25 +15,4 @@ use App\Models\Camera;
 
 Route::get('/', function () {
     return view('welcome');
-});
-Route::get("/createadmin", function () {
-    $user = new User;
-    $user->login = "admin";
-    $user->password = "admin";
-    $user->name = "admin";
-
-    $user->save();
-});
-Route::get("/createroom", function () {
-    $room = new Room;
-    $room->name = "Ленина 71";
-
-    $room->save();
-
-    $id = $room->id;
-
-    $camera = new Camera;
-    $camera->name = "2-ой этаж";
-    $camera->room_id = $id;
-    $camera->save();
 });

@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\RoomController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -24,4 +25,5 @@ Route::get('/user', function (Request $request) {
 
 Route::post('/token', [UserController::class, "getToken"]);
 Route::post('/registration', [UserController::class, "registration"]);
-//Route::post("/get-rooms")
+Route::get('/all-rooms', [RoomController::class, "getAllRooms"]);
+Route::get("/all-cameras-by-room-id", [RoomController::class, "getAllCamerasByRoomId"]);
