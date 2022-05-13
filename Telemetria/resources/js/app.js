@@ -13,10 +13,6 @@
 // Vue.component('Menu', require('./components/Menu.vue').default);
  
  
- import Home from "./views-vue/Home.vue"
- import Admin from "./views-vue/Admin.vue"
- import Login from "./views-vue/Login.vue"
- import Registration from "./views-vue/Registration.vue"
  
  /*const router = new VueRouter({
      mode: 'history',
@@ -49,5 +45,5 @@
  const app = new Vue({
     vuetify: Vuetify,
     el: '#app',
-    router,
+
  });
