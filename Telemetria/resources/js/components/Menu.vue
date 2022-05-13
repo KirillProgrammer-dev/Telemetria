@@ -1,6 +1,6 @@
 <template>
     <v-navigation-drawer
-        style="z-index: 999;"
+        style="z-index: 999"
         color="deep-orange accent-3 white--text"
         dark
         expand-on-hover
@@ -23,7 +23,7 @@
                 </v-list-item-content>
             </v-list-item>
             <v-divider class="my-3" />
-            <div v-if="registrate">
+            <div v-if="login">
                 <v-list-item @click="logOut()">
                     <v-list-item-icon>
                         <v-icon>mdi-logout</v-icon>
@@ -34,28 +34,18 @@
                         >
                     </v-list-item-content>
                 </v-list-item>
-                <v-list-item :to="'/profile'" v-if="registrate">
+                <v-list-item :to="'/video'">
                     <v-list-item-icon>
-                        <v-icon> mdi-account-outline </v-icon>
+                        <v-icon> mdi-movie-open-play-outline </v-icon>
                     </v-list-item-icon>
                     <v-list-item-content>
                         <v-list-item-title class="text-left"
-                            >Мой профиль</v-list-item-title
+                            >Просмотр видео</v-list-item-title
                         >
                     </v-list-item-content>
                 </v-list-item>
             </div>
             <div v-else>
-                <v-list-item link :to="'/'">
-                    <v-list-item-icon>
-                        <v-icon> mdi-home-outline </v-icon>
-                    </v-list-item-icon>
-                    <v-list-item-content>
-                        <v-list-item-title class="text-left"
-                            >Главная</v-list-item-title
-                        >
-                    </v-list-item-content>
-                </v-list-item>
                 <v-list-item link :to="'/login'">
                     <v-list-item-icon>
                         <v-icon>mdi-login</v-icon>
@@ -66,23 +56,14 @@
                         >
                     </v-list-item-content>
                 </v-list-item>
-                <!--<v-list-item link to="/registration">
-              <v-list-item-icon>
-                <v-icon>mdi-account-plus</v-icon>
-              </v-list-item-icon>
-              <v-list-item-content>
-                <v-list-item-title class="text-left">Регистрация</v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>-->
             </div>
-
-            <v-list-item :to="'/search'">
+            <v-list-item link :to="'/'">
                 <v-list-item-icon>
-                    <v-icon> mdi-account-multiple-plus-outline </v-icon>
+                    <v-icon> mdi-home-outline </v-icon>
                 </v-list-item-icon>
                 <v-list-item-content>
                     <v-list-item-title class="text-left"
-                        >Дугие профили</v-list-item-title
+                        >Главная</v-list-item-title
                     >
                 </v-list-item-content>
             </v-list-item>
@@ -93,15 +74,26 @@
 <script>
 export default {
     name: "Menu",
-    data: () => ({}),
-    props: ["user", "registrate"],
+    data: () => ({
+        login: false,
+    }),
     methods: {
         logOut() {
-            axios.post("/api/user/logOut").then((r) => {
-                window.location = "/";
+            axios.post("api/log-out", null, {
+                headers: {
+                    Authorization: "Bearer " + localStorage.getItem("key"),
+                },
             });
+            this.login = false;
+            localStorage.setItem("key", undefined);
+        },
+        checkLogin() {
+            this.login =
+                localStorage.getItem("key") != undefined ? true : false;
         },
     },
-    mounted() {},
+    mounted() {
+        this.checkLogin();
+    },
 };
 </script>

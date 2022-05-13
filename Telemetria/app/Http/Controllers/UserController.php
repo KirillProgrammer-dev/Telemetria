@@ -50,4 +50,8 @@ class UserController extends Controller
         $user->save();
         return response("ok", 200);
     }
+
+    public function logOut(Request $request){
+        $request->user()->currentAccessToken()->delete();
+    }
 }
