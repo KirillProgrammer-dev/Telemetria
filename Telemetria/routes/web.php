@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+ Route::get("/createadmin", function () {
+    $user = new User;
+    $user->login = "admin";
+    $user->password = "admin";
+    $user->name = "admin";
+
+    $user->save();
+ });
