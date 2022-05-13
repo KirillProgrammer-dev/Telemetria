@@ -40,4 +40,14 @@ class UserController extends Controller
             return false;
         }
     }
+
+    public function registration(Request $request){
+        $user = new User;
+        $user->login = $request->login;
+        $user->password = Hash::make($request->password);
+        $user->name = $request->name;
+
+        $user->save();
+        return response("ok", 200);
+    }
 }

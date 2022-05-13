@@ -23,4 +23,5 @@ Route::get('/user', function (Request $request) {
 });
 
 Route::post('/token', [UserController::class, "getToken"]);
+Route::post('/registration', [UserController::class, "registration"]);
 //Route::post("/get-rooms")
