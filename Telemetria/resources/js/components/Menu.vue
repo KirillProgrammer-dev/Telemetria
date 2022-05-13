@@ -1,5 +1,6 @@
 <template>
     <v-navigation-drawer
+        style="z-index: 999;"
         color="deep-orange accent-3 white--text"
         dark
         expand-on-hover

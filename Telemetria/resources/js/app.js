@@ -13,6 +13,7 @@
  Vue.component('App', require('./App.vue').default);
  
  import Login from "./views-vue/Login.vue"
+ import Main from "./views-vue/Main.vue"
  
  const router = new VueRouter({
      mode: 'history',
@@ -20,7 +21,12 @@
          path: '/login',
          name: 'Login',
          component: Login
-     }]
+     },
+    {
+        path: '/',
+        name: 'Main',
+        component: Main
+    }]
  });
  
  const app = new Vue({
