@@ -10,44 +10,21 @@
  Vue.use(VueRouter);
  
  Vue.component('App', require('./App.vue').default);
-// Vue.component('Menu', require('./components/Menu.vue').default);
  
- 
- import Home from "./views-vue/Home.vue"
- import Admin from "./views-vue/Admin.vue"
  import Login from "./views-vue/Login.vue"
- import Registration from "./views-vue/Registration.vue"
  
- /*const router = new VueRouter({
+ const router = new VueRouter({
      mode: 'history',
      routes: [{
-         path: '/',
-         name: 'Home',
-         component: Home
-     },
- 
-     {
-         path: '/admin',
-         name: 'Admin',
-         component: Admin
-     },
-
-     {
-        path: '/login',
-        name: 'Login',
-        component: Login
-    },
-
-    {
-        path: '/registration',
-        name: 'Registration',
-        component: Registration
-    },
- ]
- });*/
+         path: '/login',
+         name: 'Login',
+         component: Login
+     }]
+ });
  
  const app = new Vue({
     vuetify: Vuetify,
     el: '#app',
     router,
+
  });

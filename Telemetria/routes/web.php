@@ -13,9 +13,6 @@ use App\Models\Information;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 Route::get("/allp", function(){
     $all = Information::all();
     for ($i = 1; $i <= count($all); $i++){
@@ -24,3 +21,9 @@ Route::get("/allp", function(){
         }
     }
  });
+Route::get('/{any}', function () {
+    return view('app');
+});
+Route::get('/', function () {
+    return view('app');
+});
