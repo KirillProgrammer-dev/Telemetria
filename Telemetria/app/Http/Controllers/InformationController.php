@@ -7,5 +7,4 @@ use App\Models\information;
 
 class InformationController extends Controller
 {
-    //
 }
