@@ -1,7 +1,7 @@
 <template>
 <div class="d-flex justify-center align center" style="height: 100%;">
     <v-alert
-        style="z-index: 10; margin: 10% auto;"
+        style="z-index: 1; margin: 10% auto;"
         :value="alert"
         width="600px"
         transition="scale-transition">
@@ -57,6 +57,7 @@ export default {
                 password: this.password,
                 device_name: navigator.userAgent
             }).then((response)=>{
+                localStorage.setItem("key", response.data)
                 console.log(response)
             })
         }
