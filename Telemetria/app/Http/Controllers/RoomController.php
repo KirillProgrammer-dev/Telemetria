@@ -10,7 +10,7 @@ class RoomController extends Controller
 {
     public function getAllCamerasByRoomId($id){
         $cameras = Camera::where("room_id", $id)->get()->first();
-        return json_encode($cameras, JSON_UNESCAPED_UNICODE);
+        return $cameras;
     }    
 
     public function getAllRooms(){
