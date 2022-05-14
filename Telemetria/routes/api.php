@@ -27,7 +27,10 @@ Route::get('/user', function (Request $request) {
 Route::post('/token', [UserController::class, "getToken"]);
 Route::post('/log-out', [UserController::class, "logOut"])->middleware(['auth:sanctum']);
 Route::post('/registration', [UserController::class, "registration"]);
+Route::post('/check-is-admin', [UserController::class, "checkIsAdmin"])->middleware(['auth:sanctum']);
+Route::post('/set-controller', [UserController::class, "setControllerAbiilities"])->middleware(['auth:sanctum']);
 Route::post('/all-rooms', [RoomController::class, "getAllRooms"]);
 Route::post('/get-video-link-by-id', [VideoController::class, "getVideoById"]);
 Route::post("/get-when-not-in-place", [VideoController::class, "getWhenNotInPlace"]);
 Route::post("/get-when-in-one-place", [VideoController::class, "getWhenInOnePlace"]);
+Route::post("/get-sections", [VideoController::class, "getSections"]);

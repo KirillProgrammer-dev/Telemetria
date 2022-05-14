@@ -1,5 +1,6 @@
 {
     "require": {
-        "laravel/ui": "^3.4"
+        "laravel/ui": "^3.4",
+        "pbmedia/laravel-ffmpeg": "^8.1"
     }
 }

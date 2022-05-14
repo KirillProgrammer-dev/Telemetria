@@ -7,6 +7,8 @@
  import axios from 'axios'
  import Vuetify from './plugins/vuetify'
  import 'material-design-icons-iconfont/dist/material-design-icons.css'
+ import VueHorizontalTimeline from "vue-horizontal-timeline";
+ Vue.use(VueHorizontalTimeline);
 
  Vue.use(VueRouter);
  

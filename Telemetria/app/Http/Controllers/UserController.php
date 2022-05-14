@@ -17,7 +17,7 @@ class UserController extends Controller
         // Проверка пароля!
         if(Hash::check($request->password, $user->password)){
             if ($user->login == "admin"){
-                $token = $user->createToken($request->device_name, ['*', 'allow-see'])->plainTextToken;
+                $token = $user->createToken($request->device_name, ['*', 'allow-all', "controller"])->plainTextToken;
             } else {
                 $token = $user->createToken($request->device_name, ['*'])->plainTextToken;
             }
@@ -34,7 +34,7 @@ class UserController extends Controller
         if ($request->user() == null){
             return false;
         }
-        if ($request->user()->tokenCan("allow-see")){
+        if ($request->user()->tokenCan("controller")){
             return true;
         } else {
             return false;
@@ -53,5 +53,18 @@ class UserController extends Controller
 
     public function logOut(Request $request){
         $request->user()->currentAccessToken()->delete();
+    }
+
+    public function checkIsAdmin(Request $request){
+        if ($request->user()->tokenCan("allow-all")){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setControllerAbiilities(Request $request){
+        $user = User::where("id", $request->id);
+        $user->tokenCan(["*", "controller"]);
     }
 }
