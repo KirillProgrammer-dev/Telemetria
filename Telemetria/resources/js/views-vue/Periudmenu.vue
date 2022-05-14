@@ -29,7 +29,7 @@
                     <br />
                     <v-row>
                         <v-col cols="5">
-                            <v-subheader>Выберите конец промежутка</v-subheader>
+                            <v-subheader>Выберите конец промежутка {{showTimestemp}}</v-subheader>
                         </v-col>
                         <v-col cols="7">
                             <v-text-field v-model="end" id="endtime" label="Конец" value="13:30:20" type="time">
@@ -55,7 +55,8 @@
 
                             <v-list-item v-for="child in item.cameras" :key="child.id">
                                 <v-list-item-content>
-                                    <v-list-item-title @click="openVideo(child.id)" link v-text="child.name"></v-list-item-title>
+                                    <v-list-item-title @click="openVideo(child.id)" link v-text="child.name">
+                                    </v-list-item-title>
                                 </v-list-item-content>
                             </v-list-item>
                         </v-list-group>
@@ -63,7 +64,7 @@
 
                 </v-card>
                 <br />
-                <v-btn @click="checker()"> Подтвердить </v-btn>
+                <v-btn @click="submit"> Подтвердить </v-btn>
 
                 <v-btn @click="e1 = 1"> Назад </v-btn>
             </v-stepper-content>
@@ -72,6 +73,7 @@
 </template>
 
 <script>
+    import {mapGetters, mapMutations} from 'vuex'
     export default {
         name: "Menu",
         data: () => ({
@@ -79,38 +81,36 @@
             items: [],
             start: "00:00:00",
             end: "00:00:00"
-
-
         }),
 
-        methods: {
+        computed: mapGetters(["showTimestemp"]),
+        methods: 
+        {
             setTime() {
                 this.e1 = 2
-                
-                store.commit ("Settime", this.start, this.end)
+                // this.$store.dispatch("saveTimestemp", [this.start, this.end])
 
-                console.log(this.$store.state.startTime)
-                console.log(this.$store.state.endTime)
             },
-            checker(){
-                console.log(this.$store.state.startTime)
-                console.log(this.$store.state.endTime)
+
+            openVideo(id) {
+                window.location = ('/video/' + id)
+            },
+            ...mapMutations(['saveTimestemp']),
+            submit() {
+                this.saveTimestemp({
+                    start: this.start,
+                    end: this.end
+                })
             }
         },
-
         mounted() {
             axios
-            .post('api/all-rooms')
-            .then(response =>{
-                this.items = response.data;
-            });
-        }, 
-
-        methods: {
-            openVideo(id){
-                window.location = ('/video/' + id)
-            }
+                .post('api/all-rooms')
+                .then(response => {
+                    this.items = response.data;
+                });
         },
+
     };
 
 </script>

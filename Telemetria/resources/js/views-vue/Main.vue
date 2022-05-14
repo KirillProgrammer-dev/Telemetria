@@ -18,24 +18,19 @@
         style="text-align: center">
             <h4>Если вам требуется доступ к просмотру статистики и камер, пожалуйста обратитсь к администратору</h4>
             <br>
-                <v-btn @click="qwe()"> Подтвердить </v-btn>
-
+            <p>{{showTimestemp}}</p>
         </section>
     </div>
 </template>
 
 
 <script>
+import {mapGetters} from 'vuex'
 export default {
     name:"Login",
     data: () => ({
     }),
-    methods: {
-        qwe(){
-            console.log(this.$store.state.startTime)
-            console.log(this.$store.state.endTime)
-
-        }
-    }
+    computed: mapGetters(["showTimestemp"]),
+    methods: {},
 }
 </script>
