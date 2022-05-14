@@ -55,7 +55,7 @@
 
                             <v-list-item v-for="child in item.cameras" :key="child.id">
                                 <v-list-item-content>
-                                    <v-list-item-title v-text="child.name"></v-list-item-title>
+                                    <v-list-item-title @click="openVideo(child.id)" link v-text="child.name"></v-list-item-title>
                                 </v-list-item-content>
                             </v-list-item>
                         </v-list-group>
@@ -63,7 +63,6 @@
 
                 </v-card>
                 <br />
-
                 <v-btn @click="checker()"> Подтвердить </v-btn>
 
                 <v-btn @click="e1 = 1"> Назад </v-btn>
@@ -101,14 +100,17 @@
 
         mounted() {
             axios
-                .post('api/all-rooms')
-                .then(response => {
-                    this.items = response.data;
-                });
+            .post('api/all-rooms')
+            .then(response =>{
+                this.items = response.data;
+            });
+        }, 
 
-                console.log(this.$store.state.startTime)
-                console.log(this.$store.state.endTime)
-        }
+        methods: {
+            openVideo(id){
+                window.location = ('/video/' + id)
+            }
+        },
     };
 
 </script>

@@ -18,8 +18,8 @@
                 <v-list-item-content>
                     <v-list-item-title
                         class="font-weight-black"
-                    ></v-list-item-title>
-                    <v-list-item-subtitle></v-list-item-subtitle>
+                    > Admin </v-list-item-title>
+                    <v-list-item-subtitle> Admin </v-list-item-subtitle>
                 </v-list-item-content>
             </v-list-item>
             <v-divider class="my-3" />

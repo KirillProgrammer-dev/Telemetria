@@ -12,15 +12,9 @@ use App\Models\Information;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get("/allp", function(){
-    $all = Information::all();
-    for ($i = 1; $i <= count($all); $i++){
-        if (($all[$i]->time - $all[$i-1]->time) >= 2){
-            return $all[$i];
-        }
-    }
- });
+Route::get('/{any}/{id}', function () {
+    return view('app');
+});
 Route::get('/{any}', function () {
     return view('app');
 });
