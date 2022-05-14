@@ -22,7 +22,8 @@
                             <v-subheader>Выберите начало промежутка</v-subheader>
                         </v-col>
                         <v-col cols="7">
-                            <v-text-field id="starttime" label="Начало" value="13:30:00" type="time"></v-text-field>
+                            <v-text-field v-model="start" id="starttime" label="Начало" value="13:30:20" type="time">
+                            </v-text-field>
                         </v-col>
                     </v-row>
                     <br />
@@ -31,26 +32,39 @@
                             <v-subheader>Выберите конец промежутка</v-subheader>
                         </v-col>
                         <v-col cols="7">
-                            <v-text-field id="endtime" label="Конец" value="13:30:00" type="time"></v-text-field>
+                            <v-text-field v-model="end" id="endtime" label="Конец" value="13:30:20" type="time">
+                            </v-text-field>
                         </v-col>
                     </v-row>
                 </v-card>
                 <br />
 
-                <v-btn class="mb-30" @click="e1 = 2"> Дальше </v-btn>
+                <v-btn class="mb-30" @click="setTime()"> Дальше </v-btn>
             </v-stepper-content>
 
             <v-stepper-content step="2" data-app>
                 <v-card class="mb-12" color="grey lighten-1" height="200px" style="margin-bottom: 1em; padding: 1em;">
-                    <v-row align="center">
-                        <v-col class="d-flex" cols="12" sm="6">
-                            <v-select :items="rooms.roomname" label="Standard"></v-select>
-                        </v-col>
-                    </v-row>
+
+                    <v-list>
+                        <v-list-group v-for="item in items" :key="item.id" no-action>
+                            <template v-slot:activator>
+                                <v-list-item-content>
+                                    <v-list-item-title v-text="item.nameroom"></v-list-item-title>
+                                </v-list-item-content>
+                            </template>
+
+                            <v-list-item v-for="child in item.cameras" :key="child.id">
+                                <v-list-item-content>
+                                    <v-list-item-title v-text="child.name"></v-list-item-title>
+                                </v-list-item-content>
+                            </v-list-item>
+                        </v-list-group>
+                    </v-list>
+
                 </v-card>
                 <br />
 
-                <v-btn @click="e1 = 3"> Подтвердить </v-btn>
+                <v-btn @click="checker()"> Подтвердить </v-btn>
 
                 <v-btn @click="e1 = 1"> Назад </v-btn>
             </v-stepper-content>
@@ -63,30 +77,38 @@
         name: "Menu",
         data: () => ({
             e1: 1,
-            rooms: [{
-                roomname: {
-                    id: 1,
-                    name: "",
-            		room_id: 1,
-            		created_at: "",
-		            updated_at: "",
-                }
-            }]
-            
+            items: [],
+            start: "00:00:00",
+            end: "00:00:00"
+
+
         }),
 
-        methods: {},
+        methods: {
+            setTime() {
+                this.e1 = 2
+                
+                store.commit ("Settime", this.start, this.end)
+
+                console.log(this.$store.state.startTime)
+                console.log(this.$store.state.endTime)
+            },
+            checker(){
+                console.log(this.$store.state.startTime)
+                console.log(this.$store.state.endTime)
+            }
+        },
 
         mounted() {
             axios
-            .post('api/all-rooms')
-            .then(response =>{
-                this.rooms = response.data 
-                console.log(this.rooms)
-            })
+                .post('api/all-rooms')
+                .then(response => {
+                    this.items = response.data;
+                });
+
+                console.log(this.$store.state.startTime)
+                console.log(this.$store.state.endTime)
         }
     };
 
 </script>
-<style>
-</style>

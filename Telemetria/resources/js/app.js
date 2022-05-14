@@ -9,12 +9,13 @@
  import 'material-design-icons-iconfont/dist/material-design-icons.css'
 
  Vue.use(VueRouter);
- 
  Vue.component('App', require('./App.vue').default);
  
  import Login from "./views-vue/Login.vue"
  import Main from "./views-vue/Main.vue"
  import Periudmenu from "./views-vue/Periudmenu.vue"
+ import store from "./store"
+ 
  
  const router = new VueRouter({
      mode: 'history',
@@ -40,5 +41,6 @@
     vuetify: Vuetify,
     el: '#app',
     router,
+    store,
 
  });
