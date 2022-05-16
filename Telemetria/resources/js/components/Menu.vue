@@ -23,14 +23,6 @@
                         <v-list-item-title class="text-left">Выйти</v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>
-                <v-list-item :to="'/video'">
-                    <v-list-item-icon>
-                        <v-icon> mdi-movie-open-play-outline </v-icon>
-                    </v-list-item-icon>
-                    <v-list-item-content class="item-content">
-                        <v-list-item-title class="text-left">Просмотр видео</v-list-item-title>
-                    </v-list-item-content>
-                </v-list-item>
             </div>
             <div v-else>
                 <v-list-item link :to="'/login'">
@@ -58,6 +50,14 @@
                     <v-list-item-title class="text-left" @click="addController()">Добавить контроллера
                     </v-list-item-title>
                 </v-list-item-content>
+                <v-list-item :to="'/video'">
+                    <v-list-item-icon>
+                        <v-icon> mdi-movie-open-play-outline </v-icon>
+                    </v-list-item-icon>
+                    <v-list-item-content class="item-content">
+                        <v-list-item-title class="text-left">Просмотр видео</v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>
             </v-list-item>
         </v-list>
         <v-overlay :absolute="false" :value="overlay"></v-overlay>
